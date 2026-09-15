@@ -4,6 +4,7 @@ permissions: { contents: read }
 concurrency: { group: production, cancel-in-progress: false }
 jobs:
   deploy:
+    if: vars.DEPLOY_ENABLED == 'true'
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -16,4 +17,3 @@ jobs:
         with:
           apiToken: "${{ secrets.CLOUDFLARE_API_TOKEN }}"
           accountId: "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
-

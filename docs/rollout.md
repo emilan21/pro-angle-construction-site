@@ -7,7 +7,7 @@ OpenTofu manages only the new public repository, its main-branch ruleset, two Wo
 1. Export credentials as `TF_VAR_github_token` and `TF_VAR_cloudflare_api_token`; never place them in a tfvars file or command history.
 2. Copy `infra/example.auto.tfvars.example` to a gitignored `infra/local.auto.tfvars` and provide the account and zone IDs.
 3. From `infra/`, run `tofu init`, `tofu fmt -check`, `tofu validate`, and inspect `tofu plan`.
-4. Create the GitHub repository first with `tofu apply -target=github_repository.site -target=github_repository_vulnerability_alerts.site`, push this project, and configure the `production` environment secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+4. The GitHub repository was bootstrapped with `gh repo create`; the checked-in import block makes the first apply adopt it. Apply the repository, alerts, and ruleset targets first, then configure the `production` environment secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. After both secrets and any required reviewers are configured, create the repository Actions variable `DEPLOY_ENABLED=true`; main-branch deploy jobs remain safely skipped until then.
 5. Deploy the Worker once so the service exists. Then apply the remaining plan to attach custom domains and Access. This order avoids targeting a Worker service that has not yet been created.
 
 Access is default-deny: only requests matching `132.147.2.73/32` satisfy the reusable allow policy. There is intentionally no service-token bypass. If the ISP address changes, update only `preview_ip_cidr`, review the plan, and apply it.
@@ -29,4 +29,3 @@ Launch is a coordinated change after Kevin approves all wording and real photos:
 5. Verify the production build and metadata in a pull request.
 6. Remove only `cloudflare_zero_trust_access_application.apex`, `cloudflare_zero_trust_access_application.www`, and the now-unused public preview policy from this configuration/state. Do not edit or import any estimate-site resources.
 7. Apply, deploy from protected `main`, and repeat TLS, redirect, indexing, accessibility, and content checks from inside and outside the former allowlisted network.
-
