@@ -1,0 +1,80 @@
+---
+import "../styles/global.css";
+import { portfolioPlaceholders } from "../data/projects";
+
+const canonical = "https://proangleconstructionpa.com/";
+const phoneDisplay = "440.429.3474";
+const phoneHref = "tel:+14404293474";
+const email = "proangleconstruction@gmail.com";
+const emailHref = `mailto:${email}?subject=${encodeURIComponent("Project consultation request")}&body=${encodeURIComponent("Hi Kevin,\n\nI’d like to talk about a construction project in Southwestern Pennsylvania.\n\nProject type:\nLocation:\nBest way to reach me:\n\nThank you,")}`;
+const previewMode = import.meta.env.PUBLIC_PREVIEW_MODE !== "false";
+const services = [
+  { number: "01", title: "Residential", copy: "Thoughtful construction for the places where life happens, shaped around the needs of your home and family." },
+  { number: "02", title: "Commercial", copy: "Practical contracting support for commercial spaces, with clear communication from planning through completion." },
+  { number: "03", title: "Renovations", copy: "Updates that make an existing space work harder, feel better, and fit the way you use it today." },
+  { number: "04", title: "Additions", copy: "New rooms and expanded living areas planned to feel intentional and connected to the original structure." },
+  { number: "05", title: "Decks", copy: "Durable outdoor spaces built for gathering, relaxing, and making more of your property." },
+  { number: "06", title: "General contracting", copy: "Coordinated project oversight that keeps the work, decisions, and next steps moving in the same direction." },
+];
+const structuredData = {
+  "@context": "https://schema.org", "@type": "GeneralContractor", name: "Pro Angle Contracting", url: canonical,
+  telephone: "+1-440-429-3474", email, image: `${canonical}images/pro-angle-logo.jpg`,
+  address: { "@type": "PostalAddress", addressLocality: "Uniontown", addressRegion: "PA", addressCountry: "US" },
+  areaServed: { "@type": "Place", name: "Southwestern Pennsylvania" },
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Pro Angle Contracting provides residential, commercial, renovation, addition, deck, and general contracting services in Southwestern Pennsylvania." />
+    <meta name="theme-color" content="#071e33" /><meta name="robots" content={previewMode ? "noindex, nofollow" : "index, follow"} />
+    <link rel="canonical" href={canonical} /><link rel="icon" href="/favicon.svg" type="image/svg+xml" /><link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content="website" /><meta property="og:site_name" content="Pro Angle Contracting" />
+    <meta property="og:title" content="Pro Angle Contracting | Building a Stronger Tomorrow" /><meta property="og:description" content="Construction and contracting services for homes and businesses in Southwestern Pennsylvania." />
+    <meta property="og:url" content={canonical} /><meta property="og:image" content={`${canonical}images/pro-angle-logo.jpg`} /><meta property="og:image:alt" content="Pro Angle Contracting logo" />
+    <meta name="twitter:card" content="summary_large_image" /><title>Pro Angle Contracting | Building a Stronger Tomorrow</title>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header"><div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Pro Angle Contracting home"><img src="/images/pro-angle-logo.jpg" alt="Pro Angle Contracting" width="300" height="145" /></a>
+      <nav class="desktop-nav" aria-label="Primary navigation"><a href="#services">Services</a><a href="#about">About</a><a href="#process">Process</a><a href="#work">Our work</a><a href="#contact">Contact</a></nav>
+      <a class="button button-small header-call" href={phoneHref} aria-label={`Call Pro Angle Contracting at ${phoneDisplay}`}>Call {phoneDisplay}</a>
+      <details class="mobile-menu"><summary aria-label="Open navigation menu"><span></span><span></span><span></span></summary><nav aria-label="Mobile navigation"><a href="#services">Services</a><a href="#about">About</a><a href="#process">Process</a><a href="#work">Our work</a><a href="#contact">Contact</a><a class="mobile-phone" href={phoneHref}>Call {phoneDisplay}</a></nav></details>
+    </div></header>
+
+    <main id="main-content">
+      <section class="hero" id="top" aria-labelledby="hero-title"><div class="hero-lines" aria-hidden="true"></div><div class="container hero-grid">
+        <div class="hero-copy"><p class="eyebrow">Uniontown · Southwestern Pennsylvania</p><h1 id="hero-title">Building a<br /><span>stronger tomorrow.</span></h1><p class="hero-lede">From the first conversation to the final detail, Pro Angle brings a clear, grounded approach to construction projects of every scale.</p><div class="hero-actions"><a class="button" href={phoneHref}>Start with a call</a><a class="text-link" href="#services">Explore our services <span aria-hidden="true">↓</span></a></div></div>
+        <div class="hero-build" aria-hidden="true"><div class="beam beam-one"></div><div class="beam beam-two"></div><div class="hero-badge"><strong>Built with purpose.</strong><span>Planned with care.</span></div></div>
+      </div></section>
+
+      <section class="services section" id="services" aria-labelledby="services-title"><div class="container">
+        <div class="section-heading split-heading"><div><p class="eyebrow">What we build</p><h2 id="services-title">One contractor.<br />Every angle covered.</h2></div><p>Whether you’re improving the space you have or starting something new, we help turn a clear plan into solid work.</p></div>
+        <div class="service-grid">{services.map((service) => <article class="service-card"><span class="service-number" aria-hidden="true">{service.number}</span><h3>{service.title}</h3><p>{service.copy}</p><span class="roof-mark" aria-hidden="true"></span></article>)}</div>
+      </div></section>
+
+      <section class="about section" id="about" aria-labelledby="about-title"><div class="container about-grid">
+        <div class="about-mark" aria-hidden="true"><span>PA</span><small>Pro Angle</small></div>
+        <div class="about-copy"><p class="eyebrow">Meet Pro Angle</p><h2 id="about-title">A direct approach to building well.</h2><p class="lead">Kevin works with clients to understand the project, talk through the details, and build a practical path forward.</p><p>Pro Angle Contracting serves homeowners and businesses in Southwestern Pennsylvania. Every project starts with listening: what you need, what matters most, and what a successful result should feel like.</p><a class="text-link light" href={emailHref}>Tell Kevin about your project <span aria-hidden="true">↗</span></a></div>
+      </div></section>
+
+      <section class="process section" id="process" aria-labelledby="process-title"><div class="container">
+        <div class="section-heading centered"><p class="eyebrow">How it works</p><h2 id="process-title">A clear path from idea to build.</h2></div>
+        <ol class="process-list"><li><span>01</span><div><h3>Consultation</h3><p>Share your goals, the space, and what you want the project to accomplish.</p></div></li><li><span>02</span><div><h3>Estimate</h3><p>Review a practical scope and estimate so the work ahead is clearly understood.</p></div></li><li><span>03</span><div><h3>Construction</h3><p>Move into the build with open communication and attention to the details.</p></div></li></ol>
+      </div></section>
+
+      <section class="work section" id="work" aria-labelledby="work-title"><div class="container">
+        <div class="section-heading split-heading"><div><p class="eyebrow">Project portfolio</p><h2 id="work-title">Work worth showing.</h2></div><p>Real project photos are being prepared for this space. These branded previews show where approved work will appear.</p></div>
+        <div class="portfolio-grid">{portfolioPlaceholders.map((item, index) => <article class="portfolio-card"><div class={`placeholder-art art-${index + 1}`} role="img" aria-label={`${item.label}: ${item.title}. No project photo has been published.`}><span class="placeholder-label">Photo coming soon</span><i></i><b>PA</b></div><div class="portfolio-copy"><p>{item.category} · {item.label}</p><h3>{item.title}</h3><span>{item.summary}</span></div></article>)}</div>
+        <p class="portfolio-note"><strong>Preview note:</strong> The graphics above are branded placeholders, not photographs of completed Pro Angle projects.</p>
+      </div></section>
+
+      <section class="service-area section" aria-labelledby="area-title"><div class="container area-grid"><div><p class="eyebrow">Where we work</p><h2 id="area-title">Rooted in Uniontown.<br />Serving Southwestern Pennsylvania.</h2></div><div class="area-lines" aria-hidden="true"><span></span><span></span><span></span><b>PA</b></div></div></section>
+      <section class="contact section" id="contact" aria-labelledby="contact-title"><div class="container contact-grid"><div><p class="eyebrow">Let’s build something solid</p><h2 id="contact-title">Your project starts with a conversation.</h2><p>Tell us what you’re planning. We’ll start with the details and take it from there.</p></div><div class="contact-actions"><a href={phoneHref}><small>Call Kevin</small><strong>{phoneDisplay}</strong><span aria-hidden="true">↗</span></a><a href={emailHref}><small>Email Pro Angle</small><strong>{email}</strong><span aria-hidden="true">↗</span></a></div></div></section>
+    </main>
+    <footer><div class="container footer-inner"><img src="/images/pro-angle-logo.jpg" alt="Pro Angle Contracting" width="220" height="106" loading="lazy" /><p>Building a stronger tomorrow.</p><p>© {new Date().getFullYear()} Pro Angle Contracting</p></div></footer>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+cloudflare_account_id = "replace-me"
+cloudflare_zone_id    = "replace-me"
+github_owner          = "emilan21"
+preview_ip_cidr       = "132.147.2.73/32"
+# Supply cloudflare_api_token and github_token through TF_VAR_* environment variables.
+

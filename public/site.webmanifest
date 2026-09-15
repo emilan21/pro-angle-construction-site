@@ -1,0 +1,10 @@
+{
+  "name": "Pro Angle Contracting",
+  "short_name": "Pro Angle",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f6f1",
+  "theme_color": "#071e33",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
+
